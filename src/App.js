@@ -17,14 +17,12 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">{this.state.title}</h1>
+
 
           {/* We rended diffrent component based on the path */}
           <Route exact path="/" component={Welcome} />
-          <Route
-            path="/search"
-            render={() => <SelectDish model={modelInstance} />}
-          />
+          <Route path="/search" render={() => <SelectDish model={modelInstance} />}/>
+
         </header>
       </div>
     );
