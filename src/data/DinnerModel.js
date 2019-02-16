@@ -39,18 +39,18 @@ class DinnerModel extends ObservableModel {
 
 //Adds a dish to menu
   addDishToMenu(dish) {
-    menu.push(dish);
-    localStorage.setItem("menu", JSON.stringify(menu));
+    this.menu.push(dish);
+    localStorage.setItem("menu", JSON.stringify(this.menu));
     this.notifyObservers();
   };
 //Removes a dish from menu
   removeDishFromMenu(id) {
-    for(var i = 0; i < menu.length; i++){
-      if(menu[i].id === id){
-        menu.splice(i, 1);
+    for(var i = 0; i < this.menu.length; i++){
+      if(this.menu[i].id === id){
+        this.menu.splice(i, 1);
       }
     }
-    localStorage.setItem("menu", JSON.stringify(menu));
+    localStorage.setItem("menu", JSON.stringify(this.menu));
     this.notifyObservers();
   };
 
@@ -68,25 +68,25 @@ class DinnerModel extends ObservableModel {
 
 //Returns menu
   returnMenu() {
-    return menu;
+    return this.menu;
 }
 
   setFilter(f) {
-    filter = f
-    localStorage.setItem("filter", filter);
+    this.filter = f
+    localStorage.setItem("filter", this.filter);
     this.notifyObservers();
 }
   getFilter() {
-    return filter;
+    return this.filter;
 }
   setType(t) {
-    type = t;
-    localStorage.setItem("type", type);
-    notifyObservers();
+    this.type = t;
+    localStorage.setItem("type", this.type);
+    this.notifyObservers();
 
 }
   getType() {
-    return type;
+    return this.type;
 }
 
   // API methods
@@ -99,9 +99,7 @@ class DinnerModel extends ObservableModel {
 
   getDish(id) {
     const url = `${BASE_URL}/recipes/`+id+'/information';
-    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/'+id+'/information';
-    return fetch(url, httpOptions)
-      .then(processResponse)
+    return fetch(url, httpOptions).then(this.processResponse);
       // .catch(handleError)
 
   }
