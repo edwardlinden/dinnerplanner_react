@@ -2,3 +2,35 @@
     text-align: center;
     margin-top: 3%;
 }
+
+.borderline {
+    margin-top:10px;
+    padding: 20px;
+    outline: 1px solid #ccc;
+    outline-offset: -10px;
+ }
+
+ .littlebutton {
+    text-align: center;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+
+
+
+
+ /* .margin-right {
+    margin-right: 1px;
+ }
+
+ .margin-left {
+    margin-left: 30%;
+ } */

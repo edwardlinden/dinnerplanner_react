@@ -1,0 +1,10 @@
+.borderline {
+    margin-top:10px;
+    padding: 20px;
+    outline: 1px solid #ccc;
+    outline-offset: -10px;
+ }
+
+ .backgroundWhite {
+    background-color: white;
+ }

@@ -1,8 +1,10 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 // Alternative to passing the moderl as the component property,
 // we can import the model instance directly
-import modelInstance from "../data/DinnerModel";
-import "./Dishes.css";
+import modelInstance from '../data/DinnerModel';
+import './Dishes.css';
+import { Link } from 'react-router-dom';
+import loader from '../loader.gif';
 
 class Dishes extends Component {
   constructor(props) {
@@ -10,29 +12,45 @@ class Dishes extends Component {
     // We create the state to store the various statuses
     // e.g. API data loading or error
     this.state = {
-      status: "LOADING"
+      type: modelInstance.getType(),
+      filter: modelInstance.getFilter(),
+      status: 'LOADING'
     };
   }
 
   // this methods is called by React lifecycle when the
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to call the API and get the data
-  componentDidMount() {
+  componentDidMount = () => {
     // when data is retrieved we update the state
     // this will cause the component to re-render
-    modelInstance
-      .getAllDishes()
-      .then(dishes => {
-        this.setState({
-          status: "LOADED",
-          dishes: dishes.results
-        });
-      })
-      .catch(() => {
-        this.setState({
-          status: "ERROR"
-        });
+    modelInstance.addObserver(this)
+    modelInstance.getAllDishes().then(dishes => {
+      this.setState({
+        status: 'LOADED',
+        dishes: dishes.results
       });
+    }).catch(() => {
+      this.setState({
+        status: 'ERROR'
+      });
+    });
+
+  }
+  componentWillUnmount() {
+    modelInstance.removeObserver(this)
+  }
+
+  onClickDish(param, e) {
+    modelInstance.setCurrentDish(param);
+  }
+
+  update() {
+    this.setState({
+      type: modelInstance.getType(),
+      filter: modelInstance.getFilter(),
+    })
+    this.componentDidMount();
   }
 
   render() {
@@ -42,24 +60,43 @@ class Dishes extends Component {
     // useful message to the user or show the list
     // of returned dishes
     switch (this.state.status) {
-      case "LOADING":
-        dishesList = <em>Loading...</em>;
+      case 'LOADING':
+        // dishesList = <em>Loading...</em>
+        dishesList = <img src={loader} alt="..."></img>
+
         break;
-      case "LOADED":
-        dishesList = this.state.dishes.map(dish => (
-          <li key={dish.id}>{dish.title}</li>
-        ));
+      case 'LOADED':
+        dishesList = this.state.dishes.map((dish) =>
+
+        <div id={dish.id} key={dish.id} className='col-sm-12 col-md-3' >
+            <Link to={"/details"}>
+              <div className='thumbnail' id={dish.id} onClick={this.onClickDish.bind(this, dish.id)}>
+                <img src={'https://spoonacular.com/recipeImages/'+dish.id+'-240x150.jpg'} alt="..."></img>
+                <div id="dishCation"className='caption'>
+                  <p>{dish.title}</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+        )
         break;
       default:
-        dishesList = <b>Failed to load data, please try again</b>;
+        dishesList = <b>Failed to load data, please try again</b>
         break;
     }
 
+
+
     return (
-      <div className="Dishes">
-        <h3>Dishes</h3>
-        <ul>{dishesList}</ul>
+
+      <div>
+          {dishesList}
       </div>
+
+
+
+
     );
   }
 }

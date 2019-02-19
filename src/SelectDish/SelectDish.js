@@ -10,7 +10,7 @@ class SelectDish extends Component {
     this.state = {
       type: this.props.model.getType(),
       filter: this.props.model.getFilter(),
-      status: 'INITIAL'
+      status: 'LOADING'
     }
   }
 
@@ -52,15 +52,15 @@ class SelectDish extends Component {
         <Sidebar model={this.props.model}/>
 
 
-        <div id="pageView">
-          <div className="col-sm-9">
-            <h4>Find a dish</h4>
+        <div >
+          <div className="col-sm-9 borderline" >
+            <h4>Find your dinner</h4>
             <div className="input-group col-xs-12">
-              <input id="searchFilter" type="text" className="form-control" placeholder="Search for..." onChange={this.onFilterChanged}/>
+              <input type="text" className="form-control" placeholder="Search..." onChange={this.onFilterChanged}/>
 
-              <span className="input-group-btn">
+              <span className="input-group-btn input-mysize">
 
-              <select id="dishType" className="form-control" onChange={this.onTypeChanged}>
+              <select className="form-control" onChange={this.onTypeChanged}>
                 <option value="">All</option>
                 <option value="antipasti">Antipasti</option>
                 <option value="beverage">Beverage</option>
@@ -78,13 +78,10 @@ class SelectDish extends Component {
                 <option value="side dish">Side dish</option>
 
               </select>
-              <button className="btn btn-default" type="button">Search</button>
-
               </span>
-
               <span className="input-group-btn">
-                 <button  className="btn btn-default" type="button">Search</button>
-               </span>
+                 <button  className="btn btn-default" type="button">Go!</button>
+              </span>
 
             </div>
             <br></br>
