@@ -8,8 +8,8 @@ class Welcome extends Component {
       <div className="Welcome">
 
       {/* Welcome View */}
-			<div class="container centerit">
-				<div class="centerhorizont">
+			<div className="container centerit">
+				<div className="centerhorizont">
 					Dinner usually refers to the most significant meal of the day, 
 					which can be at noon or in the evening. However, the term "dinner" 
 					can have different meanings depending on culture, as it may mean a 
@@ -20,7 +20,7 @@ class Welcome extends Component {
 				</div>
         <br></br>
         <Link to="/search">
-          <button type="button" class="btn btn-primary">Create new dinner and accept cookies</button>
+          <button type="button" className="btn btn-primary">Create new dinner and accept cookies</button>
         </Link>
           
 			</div> 

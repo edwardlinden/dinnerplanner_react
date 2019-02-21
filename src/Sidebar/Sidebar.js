@@ -98,7 +98,7 @@ class Sidebar extends Component {
                     this.state.fullMenu.map((menuDish) =>
 
 
-                    <div className="alert alert-warning alert-dismissible" id="dishNameSpan"role="alert">
+                    <div className="alert" id="dishNameSpan"role="alert">
                      <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={onRemoveDish.bind(this, menuDish.id)}>&times;</button>
                      <strong>{menuDish.servings*this.state.numberOfGuests} SEK </strong> - {menuDish.title}
                      </div>

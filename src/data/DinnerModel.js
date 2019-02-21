@@ -10,11 +10,11 @@ const httpOptions = {
 class DinnerModel extends ObservableModel {
   constructor() {
     super();
-    this._numberOfGuests = parseInt(localStorage.getItem("numberOfGuests"), 10)|| 4;
+    this.numberOfGuests = parseInt(localStorage.getItem("numberOfGuests"), 10)|| 4;
 
     this.getNumberOfGuests();
 
-    this._currentDish = localStorage.getItem("currentDish") || "";
+    this.currentDish = localStorage.getItem("currentDish") || "";
     this.menu = JSON.parse(localStorage.getItem("menu")) || [];
     this.filter = localStorage.getItem("filter") || "";
     this.type = localStorage.getItem("type") || "";  
@@ -25,7 +25,7 @@ class DinnerModel extends ObservableModel {
    * @returns {number}
    */
   getNumberOfGuests() {
-    return this._numberOfGuests;
+    return this.numberOfGuests;
   }
 
   /**
@@ -33,7 +33,14 @@ class DinnerModel extends ObservableModel {
    * @param {number} num
    */
   setNumberOfGuests(num) {
-    this._numberOfGuests = num;
+    if(num > 0){
+      this.numberOfGuests = num;
+      }
+      else{
+      this.numberOfGuests = 1;
+      }
+
+    localStorage.setItem("numberOfGuests", JSON.stringify(this.numberOfGuests));
     this.notifyObservers();
   }
 
@@ -56,14 +63,14 @@ class DinnerModel extends ObservableModel {
 
     // Set a current dish
   setCurrentDish(id) {
-    this._currentDish = id;
-    this.localStorage.setItem("currentDish", this._currentDish);
+    this.currentDish = id;
+    localStorage.setItem("currentDish", this.currentDish);
     this.notifyObservers();
     };
   
   //Returns the current dish HÄRMAPA SETCURRENT PÅ ID KANSKE?
   getCurrentDish() {
-      return this._currentDish;
+      return this.currentDish;
     };
 
 //Returns menu
@@ -99,14 +106,12 @@ class DinnerModel extends ObservableModel {
 
   getDish(id) {
     const url = `${BASE_URL}/recipes/`+id+'/information';
-    return fetch(url, httpOptions).then(this.processResponse);
-      // .catch(handleError)
-
+    return fetch(url, httpOptions).then(this.processResponse).catch(this.handleError);
   }
 
   getAllDishes() {
     const url = `${BASE_URL}/recipes/search`;
-    return fetch(url, httpOptions).then(this.processResponse);
+    return fetch(url, httpOptions).then(this.processResponse).catch(this.handleError);
   }
 
   processResponse(response) {
@@ -115,6 +120,17 @@ class DinnerModel extends ObservableModel {
     }
     throw response;
   }
+
+  handleError(error) {
+    if (error.json) {
+      error.json().then(error => {
+        console.error('getAllDishes() API Error:', error.message || error)
+      })
+    } else {
+      console.error('getAllDishes() API Error:', error.message || error)
+    }
+  }
+
 }
 
 // Export an instance of DinnerModel

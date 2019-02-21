@@ -24,6 +24,9 @@
     animation: spin 2s linear infinite;
   }
 
+  .backgroundWhite {
+   background-color: white;
+}
 
 
 

@@ -61,7 +61,6 @@ class Dishes extends Component {
     // of returned dishes
     switch (this.state.status) {
       case 'LOADING':
-        // dishesList = <em>Loading...</em>
         dishesList = <img src={loader} alt="..."></img>
 
         break;
