@@ -79,8 +79,8 @@ class Details extends Component {
         <tr>
           <td id='ingrnum'>{ingredient.amount*this.state.numberOfGuests} {ingredient.unit}</td>
           <td>{ingredient.name}</td>
-          <td>SEK</td>
           <td id='ingrnum'>{ingredient.amount*this.state.numberOfGuests}</td>
+          <td>SEK</td>
         </tr>
       )
 
@@ -94,35 +94,32 @@ class Details extends Component {
     <div>
       <Sidebar model={this.props.model}/>
       <div id="dishDetailView" className="col-sm-9">
-        <div className="row">
+        <div className="row borderline">
           <div className="col-xs-12 col-sm-6">
-            <div className="panel panel-default">
-              <div className="panel-body"><h3>{name}</h3></div>
-            </div>
-            <a id="img" className='thumbnail'>{image}</a>
-            <Link to="/search"><button id="backtoselectdish"type="button"className="btn btn-primary col-xs-6">Back to search</button></Link>
+            <h4>{name}</h4>
+            <div className="padding-header-left"><a>{image}</a></div>
+            <Link to="/search"><button className="btn btn-primary btn-sm">Back to search</button></Link>
             <br></br>
           </div>
           <div className="col-xs-12 col-sm-6">
-            <div className="panel panel-primary">
-              <div id="numberOfGuestsIngredients"className="panel-heading">  Ingredients for {this.state.numberOfGuests} personas</div>
-              <table className="table">
+            <div>
+              <div className="padding-header-left">  INGREDIENTS FOR {this.state.numberOfGuests} PEOPLE </div>
+              <table className="table table-striped">
                 <thead>
                   <tr>
                     <th>Amount</th>
                     <th>Ingredient</th>
-                    <th></th>
                     <th>Price</th>
+                    <th></th>
                   </tr>
                 </thead>
-                <tbody id="dishIngredients">
+                <tbody>
                 {ingredients}
                 </tbody>
               </table>
-              <hr></hr>
               <div className="footer">
-                <button id="addtomenu"type="button"className="btn btn-primary col-xs-6" onClick={this.onClickAdd.bind(this, this.state.dish)}>Add to menu</button>
-                <div id="totCostDish" className="col-xs-6">{price*this.state.numberOfGuests} SEK </div>
+                <button className="btn btn-primary btn-sm pull-left" onClick={this.onClickAdd.bind(this, this.state.dish)}>Add to menu</button>
+                <div className="pull-right redcolor">{price*this.state.numberOfGuests} SEK </div>
               </div>
               <br></br>
               <br></br>
@@ -130,23 +127,12 @@ class Details extends Component {
             </div>
           </div>
         </div>
-        <div className="panel panel-default">
-          <div className="panel-heading"><h3 id="headingName"className="panel-title">{name}</h3></div>
+        <div className="borderline">
+          <div className="panel-heading"><h3 className="panel-title">Preparations</h3></div>
           <div className="panel-body">{instructions}</div>
         </div>
       </div>
   </div>
-
-//
-//       <div id="detail" classNameNameName="col-sm-12">
-//       <h1>{name}</h1>
-//     <p>{instructions}</p>
-//     {image}
-//
-// {ingredients}
-//
-//       </div>
-
 
     );
   }

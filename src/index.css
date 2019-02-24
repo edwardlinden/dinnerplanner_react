@@ -24,11 +24,13 @@
     animation: spin 2s linear infinite;
   }
 
-  .backgroundWhite {
+.backgroundWhite {
    background-color: white;
 }
 
-
+.redcolor {
+   color: red;
+}
 
  /* .margin-right {
     margin-right: 1px;

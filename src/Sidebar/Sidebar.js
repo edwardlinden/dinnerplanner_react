@@ -36,7 +36,7 @@ class Sidebar extends Component {
     });
   }
 
-  // our handler for the input's on change event
+  // handler for the input's on change event
   onNumberOfGuestsChanged = e => {
     this.props.model.setNumberOfGuests(e.target.value);
   };
@@ -86,27 +86,25 @@ class Sidebar extends Component {
                 <div>
                   <hr></hr>
                   <div className="col-xs-12">
-                    <div className="col-xs-8" >Dish name</div>
-                    <div className="col-xs-4" >Cost</div>
+                    <div className="col-xs-8"> <strong>Dish name</strong></div>
+                    <div className="col-xs-4"> <strong>Cost</strong></div>
                   </div>
-
                   <br></br>
                 </div>
                 <li>
-
-                  <div className="col-xs-12">{
+                  <div className="col-xs-13">{
                     this.state.fullMenu.map((menuDish) =>
 
-
                     <div className="alert" id="dishNameSpan"role="alert">
-                     <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={onRemoveDish.bind(this, menuDish.id)}>&times;</button>
-                     <strong>{menuDish.servings*this.state.numberOfGuests} SEK </strong> - {menuDish.title}
-                     </div>
-                     )
-
-                  }
-
+                      <button className="close" data-dismiss="alert" aria-label="Close" onClick={onRemoveDish.bind(this, menuDish.id)}>&times;</button>
+                      <div className="col-xs-8" >{menuDish.title}</div>
+                      <div className="col-xs-3 redcolor" >{menuDish.servings*this.state.numberOfGuests} SEK </div>
+                      <br></br>
+                      <br></br>
+                    </div>
+                     )}
                   </div>
+                  
                 </li>
                 <br></br>
                 <hr></hr>

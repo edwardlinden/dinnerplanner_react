@@ -1,0 +1,14 @@
+.redcolor {
+    color: red;
+}
+
+.padding-header-left {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+}
+/* 
+#resize {
+    width:40px;
+    height: auto;
+} */

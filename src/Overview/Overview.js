@@ -33,14 +33,13 @@ class Overview extends Component {
   render() {
 
     return (
-      <div id="OverView" className="col-xs-12">
+      <div className="col-xs-12">
       <div className="row">
         <div className="col-xs-6">
-          <h2 id="overViewName">Dinner for {this.state.numberOfGuests} people</h2>
+          <h4>My dinner: {this.state.numberOfGuests} people</h4>
         </div>
         <div className="col-xs-12 col-xs-6">
-          <br/>
-            <Link to="/search"><button id="infoBackToSearch"type="button"className="btn btn-primary" >Back to search</button></Link>
+            <Link to="/search"><button id="infoBackToSearch" className="btn btn-primary" >Back to edit dinner</button></Link>
         </div>
       </div>
       <div className="row">
@@ -49,7 +48,7 @@ class Overview extends Component {
         </div>
         <div className="col-sm-3">
         </div>
-        <div id="overViewSpan" className="col-sm-6">
+        <div className="col-sm-6">
         {this.state.fullMenu.map((menuDish) =>
           <div className='col-sm-4'>
             <a className='thumbnail'>
