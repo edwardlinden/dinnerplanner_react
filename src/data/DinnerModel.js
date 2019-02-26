@@ -44,6 +44,8 @@ class DinnerModel extends ObservableModel {
     this.notifyObservers();
   }
 
+
+  
 //Adds a dish to menu
   addDishToMenu(dish) {
     this.menu.push(dish);

@@ -43,6 +43,9 @@ class Sidebar extends Component {
 
 
   render() {
+
+
+
     function onPlusButton(){
       this.props.model.setNumberOfGuests(this.props.model.getNumberOfGuests()+1)
       console.log("plus")

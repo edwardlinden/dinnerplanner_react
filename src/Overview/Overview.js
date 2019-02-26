@@ -58,17 +58,15 @@ class Overview extends Component {
                 <span id="overviewPrice">{menuDish.servings*this.state.numberOfGuests+' SEK'}</span>
               </div>
             </a>
+
           </div>
 
         )}
 
         </div>
-        <div className="col-sm-3">
+        <div className="col-sm-3">       
           <div className="col-sm-11">
-            <span>Total:</span>
-            <span id="totMenuPrice"> </span>
-          </div>
-          <div className="col-sm-1">
+            <div>Total: SEK </div>
           </div>
         </div>
       </div>

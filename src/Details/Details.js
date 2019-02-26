@@ -72,7 +72,12 @@ class Details extends Component {
       name = this.state.dish.title
       image = <img src={'https://spoonacular.com/recipeImages/'+this.state.dish.id+'-240x150.jpg'}alt="..."></img>
       instructions = this.state.dish.instructions
-      price = this.state.dish.servings
+      price = 0
+      //for loop här
+      for (let ingredient of this.state.dish.extendedIngredients) {
+        price += ingredient.amount*this.state.numberOfGuests
+
+      }
       console.log(this.state.dish)
       ingredients = this.state.dish.extendedIngredients.map( (ingredient) =>
 
@@ -119,7 +124,7 @@ class Details extends Component {
               </table>
               <div className="footer">
                 <button className="btn btn-primary btn-sm pull-left" onClick={this.onClickAdd.bind(this, this.state.dish)}>Add to menu</button>
-                <div className="pull-right redcolor">{price*this.state.numberOfGuests} SEK </div>
+                <div className="pull-right redcolor">{price} SEK </div>
               </div>
               <br></br>
               <br></br>
