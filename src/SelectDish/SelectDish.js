@@ -6,11 +6,11 @@ import "./SelectDish.css";
 class SelectDish extends Component {
   constructor(props) {
     super(props)
-debugger;
     this.state = {
       type: this.props.model.getType(),
       filter: this.props.model.getFilter(),
-      status: 'LOADING'
+      status: 'LOADING',
+      currentPlaceholder: this.props.model.getFilter()
     }
   }
 
@@ -23,20 +23,32 @@ debugger;
     this.props.model.removeObserver(this)
   }
 
-    onTypeChanged = (e) => {
-      this.props.model.setType(e.target.value)
+  onTypeChanged = (e) => {
+    this.props.model.setType(e.target.value)
 
-    }
+  }
 
-    onFilterChanged = (e) => {
-debugger;
-      this.props.model.setFilter(e.target.value)
+  onFilterChanged = (e) => {
+
+    this.props.model.setFilter(e.target.value)
+  }
+
+  setplaceholder() {
+    if (this.state.currentPlaceholder === ""){
+      return ("search...");
+  
     }
+    else {
+      return (this.state.filter);
+    }
+  }
+
 
   update() {
     this.setState({
       type: this.props.model.getType(),
       filter: this.props.model.getFilter(),
+      currentPlaceholder: this.setplaceholder()
     })
 
   }
@@ -56,11 +68,11 @@ debugger;
           <div className="col-sm-9 borderline" >
             <h4>Find your dinner</h4>
             <div className="input-group col-xs-12">
-              <input type="text" className="form-control" placeholder="Search..." onChange={this.onFilterChanged}/>
+              <input type="text" className="form-control"  placeholder={this.setplaceholder()} onChange={this.onFilterChanged}/>
 
               <span className="input-group-btn input-mysize">
 
-              <select className="form-control" onChange={this.onTypeChanged}>
+              <select className="form-control" value={this.state.type} onChange={this.onTypeChanged}>
                 <option value="">All</option>
                 <option value="antipasti">Antipasti</option>
                 <option value="beverage">Beverage</option>
@@ -80,7 +92,7 @@ debugger;
               </select>
               </span>
               <span className="input-group-btn">
-                 <button  className="btn btn-default" type="button">Go!</button>
+                 <button  className="btn btn-default" type="button" >Go!</button>
               </span>
 
             </div>

@@ -70,7 +70,7 @@ class DinnerModel extends ObservableModel {
     this.notifyObservers();
     };
   
-  //Returns the current dish HÄRMAPA SETCURRENT PÅ ID KANSKE?
+  //Returns the current dish
   getCurrentDish() {
       return this.currentDish;
     };
@@ -112,7 +112,7 @@ class DinnerModel extends ObservableModel {
   }
 
   getAllDishes() {
-    const url = `${BASE_URL}/recipes/search`;
+    const url = `${BASE_URL}/recipes/search?query=`+this.type+','+this.filter;
     return fetch(url, httpOptions).then(this.processResponse).catch(this.handleError);
   }
 
@@ -126,10 +126,10 @@ class DinnerModel extends ObservableModel {
   handleError(error) {
     if (error.json) {
       error.json().then(error => {
-        console.error('getAllDishes() API Error:', error.message || error)
+        console.error('getAllDishes() API Error json:', error.message || error)
       })
     } else {
-      console.error('getAllDishes() API Error:', error.message || error)
+      console.error('getAllDishes() API Error other:', error.message || error)
     }
   }
 

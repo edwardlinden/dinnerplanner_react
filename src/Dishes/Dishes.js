@@ -62,8 +62,8 @@ class Dishes extends Component {
     switch (this.state.status) {
       case 'LOADING':
         dishesList = <img src={loader} alt="..."></img>
-
         break;
+
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
 
@@ -85,17 +85,10 @@ class Dishes extends Component {
         break;
     }
 
-
-
     return (
-
       <div>
           {dishesList}
       </div>
-
-
-
-
     );
   }
 }
