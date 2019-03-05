@@ -6,7 +6,7 @@ import "./SelectDish.css";
 class SelectDish extends Component {
   constructor(props) {
     super(props)
-
+debugger;
     this.state = {
       type: this.props.model.getType(),
       filter: this.props.model.getFilter(),
@@ -29,7 +29,7 @@ class SelectDish extends Component {
     }
 
     onFilterChanged = (e) => {
-
+debugger;
       this.props.model.setFilter(e.target.value)
     }
 
